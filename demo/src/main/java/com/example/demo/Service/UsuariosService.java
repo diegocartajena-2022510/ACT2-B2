@@ -7,9 +7,10 @@ import java.util.List;
 
 @Service
 public interface UsuariosService {
-    List<Usuarios> getAllUsuarios();
-    Usuarios getUsuariosById(Integer id);
-    Usuarios saveUsuarios(Usuarios usuarios)throws RuntimeException;
-    Usuarios updateUsuarios(Integer id, Usuarios usuarios ) ;
-    void deleteUsuarios(Integer id);
+
+    Usuarios registrar(String usuario, String password, String email);
+    Usuarios login(String usuarios, String password);
+    List<Usuarios> listar();
+    void eliminar(int id);
+
 }
