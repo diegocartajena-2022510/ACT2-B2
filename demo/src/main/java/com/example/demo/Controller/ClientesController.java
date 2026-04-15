@@ -2,7 +2,6 @@ package com.example.demo.Controller;
 
 import com.example.demo.Entity.Clientes;
 import com.example.demo.Service.ClientesService;
-import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -21,7 +20,7 @@ public class ClientesController {
     public List<Clientes> getAllClientes(){return clientesService.getAllClientes();}
 
     @PostMapping
-    public ResponseEntity<Object> createClientes(@Valid @RequestBody Clientes clientes){
+    public ResponseEntity<Object> createClientes( @RequestBody Clientes clientes){
         try{
             Clientes createdClientes= clientesService.saveClientes(clientes);
             return new ResponseEntity<>(createdClientes, HttpStatus.CREATED);
@@ -32,7 +31,7 @@ public class ClientesController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Object> updateClientes(@PathVariable Integer id, @Valid @RequestBody Clientes clientes) {
+    public ResponseEntity<Object> updateClientes(@PathVariable Integer id, @RequestBody Clientes clientes) {
         try{
             Clientes cliente = clientesService.getClientesById(id);
             if (cliente == null) {
