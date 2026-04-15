@@ -3,7 +3,6 @@ package com.example.demo.Controller;
 
 import com.example.demo.Entity.DetalleVenta;
 import com.example.demo.Service.DetalleVentaService;
-import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -23,7 +22,7 @@ public class DetalleVentaController {
     public List<DetalleVenta> getAllDetalleVenta(){ return detalleVentaService.getAlldetalleVenta();}
 
     @PostMapping
-    public ResponseEntity<Object> createDetalleVenta(@Valid @RequestBody DetalleVenta detalleVenta){
+    public ResponseEntity<Object> createDetalleVenta( @RequestBody DetalleVenta detalleVenta){
         try{
             DetalleVenta createdDetalleVenta= detalleVentaService.savedetalleVenta(detalleVenta);
             return new ResponseEntity<>(createdDetalleVenta, HttpStatus.CREATED);
@@ -34,7 +33,7 @@ public class DetalleVentaController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Object> updateDetalleVenta(@PathVariable Integer id, @Valid @RequestBody DetalleVenta detalleVenta) {
+    public ResponseEntity<Object> updateDetalleVenta(@PathVariable Integer id, @RequestBody DetalleVenta detalleVenta) {
         try{
             DetalleVenta detalleVenta1 = detalleVentaService.getdetalleVentaById(id);
             if (detalleVenta1 == null) {
@@ -49,7 +48,7 @@ public class DetalleVentaController {
         }
     }
     @DeleteMapping("/{id}")
-    public ResponseEntity<Object> deleteDetalleVenta(@PathVariable Integer id) {
+    public ResponseEntity<Object> deleteDetalleVenta(@ModelAttribute Integer id) {
         try {
 
             DetalleVenta detalleVenta = detalleVentaService.getdetalleVentaById(id);

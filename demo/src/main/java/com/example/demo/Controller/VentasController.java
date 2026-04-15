@@ -3,7 +3,6 @@ package com.example.demo.Controller;
 
 import com.example.demo.Entity.Ventas;
 import com.example.demo.Service.VentasService;
-import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -23,7 +22,7 @@ public class VentasController {
     public List<Ventas> getAllVentas(){return ventasService.getAllVentas();}
 
     @PostMapping
-    public ResponseEntity<Object> createClientes(@Valid @RequestBody Ventas ventas){
+    public ResponseEntity<Object> createClientes( @RequestBody Ventas ventas){
         try{
             Ventas createdVentas= ventasService.saveVentas(ventas);
             return new ResponseEntity<>(createdVentas, HttpStatus.CREATED);
@@ -34,7 +33,7 @@ public class VentasController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Object> updateVentas(@PathVariable Integer id, @Valid @RequestBody Ventas ventas) {
+    public ResponseEntity<Object> updateVentas(@PathVariable Integer id, @RequestBody Ventas ventas) {
         try{
             Ventas ventas1 = ventasService.getVentasById(id);
             if (ventas1 == null) {

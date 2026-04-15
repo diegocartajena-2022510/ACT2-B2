@@ -3,7 +3,6 @@ package com.example.demo.Controller;
 
 import com.example.demo.Entity.Productos;
 import com.example.demo.Service.ProductosService;
-import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -22,7 +21,7 @@ public class ProductosController {
     public List<Productos> getAllProductos(){return productosService.getAllProductos();}
 
     @PostMapping
-    public ResponseEntity<Object> createProductos(@Valid @RequestBody Productos productos){
+    public ResponseEntity<Object> createProductos( @RequestBody Productos productos){
         try{
             Productos createdProductos= productosService.saveProductos(productos);
             return new ResponseEntity<>(createdProductos, HttpStatus.CREATED);
@@ -33,7 +32,7 @@ public class ProductosController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Object> updateProductos(@PathVariable Integer id, @Valid @RequestBody Productos productos) {
+    public ResponseEntity<Object> updateProductos(@PathVariable Integer id,@RequestBody Productos productos) {
         try{
             Productos productos1 = productosService.getProductosById(id);
             if (productos1 == null) {
