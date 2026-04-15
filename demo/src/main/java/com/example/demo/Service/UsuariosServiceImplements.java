@@ -34,10 +34,19 @@ public class UsuariosServiceImplements implements UsuariosService{
 
         return null;
     }
-
     @Override
     public List<Usuarios> listar() {
         return repo.findAll();
+    }
+
+    @Override
+    public Usuarios guardar(Usuarios usuarios) {
+        return repo.save(usuarios);
+    }
+
+    @Override
+    public Usuarios buscarPorId(int id) {
+        return repo.findById(id).orElse(null);
     }
 
     @Override
