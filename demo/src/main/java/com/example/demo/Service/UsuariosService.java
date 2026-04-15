@@ -10,6 +10,8 @@ public interface UsuariosService {
 
     Usuarios registrar(String usuario, String password, String email);
     Usuarios login(String usuarios, String password);
+    Usuarios guardar(Usuarios usuarios);
+    Usuarios buscarPorId(int id);
     List<Usuarios> listar();
     void eliminar(int id);
 
